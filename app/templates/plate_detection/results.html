@@ -1,0 +1,55 @@
+<!-- templates/plate_detection/results.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h3 class="card-title mb-0">Detection Results</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Original Image</h4>
+                        <img src="{{ plate_image.image.url }}" alt="Original Image" class="img-fluid rounded border">
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Processed Image</h4>
+                        {% if plate_image.processed_image %}
+                            <img src="{{ plate_image.processed_image.url }}" alt="Processed Image" class="img-fluid rounded border">
+                        {% else %}
+                            <div class="alert alert-warning">No plate detected</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="card-title mb-0">Detected Plate Number</h4>
+                            </div>
+                            <div class="card-body">
+                                {% if plate_image.detected_plate %}
+                                    <h2 class="display-4 text-center">{{ plate_image.detected_plate }}</h2>
+                                {% else %}
+                                    <div class="alert alert-danger">No plate number detected</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2 mt-4">
+                    <a href="{% url 'home' %}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-arrow-left me-2"></i> Process Another Image
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

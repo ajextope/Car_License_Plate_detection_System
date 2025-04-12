@@ -1,0 +1,7 @@
+django 
+opencv-python 
+pillow 
+numpy 
+django-crispy-forms 
+crispy-bootstrap5
+pytesseract

@@ -1,0 +1,46 @@
+<!-- templates/plate_detection/home.html -->
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Upload Vehicle Image</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-upload me-2"></i> Upload & Process
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h3 class="card-title mb-0">How It Works</h3>
+            </div>
+            <div class="card-body">
+                <ol>
+                    <li>Upload a clear image of a vehicle</li>
+                    <li>Our system will detect the license plate</li>
+                    <li>The processed image with plate detection will be displayed</li>
+                </ol>
+                <p class="text-muted">For best results, use images with clear visibility of the license plate.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
